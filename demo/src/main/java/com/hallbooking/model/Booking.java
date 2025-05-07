@@ -19,12 +19,13 @@ public class Booking {
     private LocalDate date;
     private LocalTime time;
     private String status = "Submitted";
+    
 
     @ManyToOne
     @JoinColumn(name = "hall_id")
     private Hall hall;
 
-    // Constructors
+    
     public Booking() {}
 
     public Booking(String name, String regNo, String societyName, String purpose, LocalDate date, LocalTime time, Hall hall) {
@@ -37,7 +38,7 @@ public class Booking {
         this.status = "Submitted";
         this.hall = hall;
     }
-    // Getters and Setters
+   
     public Long getId() {
         return id;
     }
