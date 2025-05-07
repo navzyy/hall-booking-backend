@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Halls</title>
+    <link rel="stylesheet" href="/css/hall.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+        }
+
+        .hall-card {
+            display: flex;
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .hall-card img {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .hall-info {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .hall-info h2 {
+            margin: 0;
+            color: #0a6250;
+        }
+
+        .hall-info p {
+            margin: 8px 0;
+        }
+
+        .book-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #00796b;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .book-btn:hover {
+            background-color: #004d40;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+    <h1><center>Available Halls</center></h1>
+    <a href="/my-bookings" class="btn btn-info" style="float: right; margin-bottom: 20px;">My Bookings</a>
+
+    <div th:each="hall, stat : ${halls}" class="hall-card">
+        <img th:src="@{'/images/hall' + ${stat.index + 1} + '.jpg'}" alt="Hall Image">
+        <div class="hall-info">
+            <h2 th:text="${hall.name}">Hall Name</h2>
+            <p><strong>Capacity:</strong> <span th:text="${hall.capacity}"></span></p>
+            <p th:text="${hall.description}">Description</p>
+            <a th:href="@{'/book/' + ${hall.id}}" class="book-btn">Book Now</a>
+          
+        </div>
+    </div>
+</body>
+</html>
+

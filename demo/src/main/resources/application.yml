@@ -1,0 +1,41 @@
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    enabled: true
+    cache: false  # Disable caching during development
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: email@gmail.com
+    password: password
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    password: ""
+    url: jdbc:mysql://localhost:3306/registration
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show-sql: true
+    show-sql: true

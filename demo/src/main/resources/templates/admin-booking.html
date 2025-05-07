@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-approve {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background-color: #218838;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background-color: #c82333;
+        }
+
+        .logout {
+            margin-top: 20px;
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>All Bookings</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Hall</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}"></td>
+        <td th:text="${booking.hall.name}"></td>
+        <td th:text="${booking.name}"></td>
+        <td th:text="${booking.date}"></td>
+        <td th:text="${booking.time}"></td>
+        <td th:text="${booking.status}"></td>
+        <td>
+            <form th:action="@{/admin/approve/{id}(id=${booking.id})}" method="post" style="display:inline;">
+                <button class="btn btn-approve" type="submit">Approve</button>
+            </form>
+            <form th:action="@{/admin/reject/{id}(id=${booking.id})}" method="post" style="display:inline;">
+                <button class="btn btn-reject" type="submit">Reject</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<a href="/logout" class="logout">Logout</a>
+
+</body>
+</html>
