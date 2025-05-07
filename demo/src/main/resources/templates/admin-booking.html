@@ -13,6 +13,7 @@
         h1 {
             color: #343a40;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         table {
@@ -38,11 +39,16 @@
         }
 
         .btn {
-            padding: 8px 14px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease;
         }
 
         .btn-approve {
@@ -63,15 +69,19 @@
             background-color: #c82333;
         }
 
-        .logout {
-            margin-top: 20px;
-            display: inline-block;
-            color: #007bff;
+        .btn-logout {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            margin: 8px;
             text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
         }
 
-        .logout:hover {
-            text-decoration: underline;
+        .btn-logout:hover {
+            background-color: #b71c1c;
         }
     </style>
 </head>
@@ -98,16 +108,16 @@
         <td th:text="${booking.status}"></td>
         <td>
             <form th:action="@{/admin/approve/{id}(id=${booking.id})}" method="post" style="display:inline;">
-                <button class="btn btn-approve" type="submit">Approve</button>
+                <button type="submit" class="btn btn-approve">Approve</button>
             </form>
             <form th:action="@{/admin/reject/{id}(id=${booking.id})}" method="post" style="display:inline;">
-                <button class="btn btn-reject" type="submit">Reject</button>
+                <button type="submit" class="btn btn-reject">Reject</button>
             </form>
         </td>
     </tr>
 </table>
 
-<a href="/logout" class="logout">Logout</a>
+<a th:href="@{/req/login}" class="btn-logout">Logout</a>
 
 </body>
 </html>
