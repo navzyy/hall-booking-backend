@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Booking Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #2e7d32;
+        }
+        .status {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .approved {
+            color: #2e7d32;
+        }
+        .rejected {
+            color: #d32f2f;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .login-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+        .back-btn {
+            background-color: #0288d1;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-    <h2>Your booking has been <span style="color:green">Rejected</span>.</h2> <!-- Or 'Rejected' -->
-    <a href="/req/login">Login</a>
+<div class="container">
+    <h2>Booking Status</h2>
+    <p>
+        Your booking has been <span class="rejected">Rejected</span>.
+    </p>
+
+    <a th:href="@{/req/login}" class="btn login-btn">Logout</a>
+    <a th:href="@{/admin/bookings}" class="btn back-btn">Back</a>
+
+</div>
 </body>
 </html>

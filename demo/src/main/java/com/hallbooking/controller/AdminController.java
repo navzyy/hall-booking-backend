@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
 
 import java.util.List;
 
@@ -21,11 +19,17 @@ import java.util.List;
         @Autowired
         private BookingRepository bookingRepository;
     
-        @GetMapping("/bookings")
+       /*  @GetMapping("/bookings")
         public String viewAllBookings(Model model) {
             List<Booking> bookings = bookingRepository.findAll();
             model.addAttribute("bookings", bookings);
             return "admin-booking";
+        }*/
+        @GetMapping("/bookings")
+        public String viewAllSubmittedBookings(Model model) {
+           List<Booking> bookings = bookingRepository.findByStatus("Submitted"); // Only pending bookings
+           model.addAttribute("bookings", bookings);
+           return "admin-booking"; // Your admin table HTML
         }
     
         @PostMapping("/bookings/{id}/approve")
@@ -33,7 +37,7 @@ import java.util.List;
             Booking booking = bookingRepository.findById(id).orElseThrow();
             booking.setStatus("Approved");
             bookingRepository.save(booking);
-            return "redirect:/admin/booking";
+            return "admin-booking";
         }
     
         @PostMapping("/bookings/{id}/reject")
@@ -41,7 +45,7 @@ import java.util.List;
             Booking booking = bookingRepository.findById(id).orElseThrow();
             booking.setStatus("Rejected");
             bookingRepository.save(booking);
-            return "redirect:/admin/bookings";
+            return "admin-booking";
         }
     }
     
