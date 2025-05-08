@@ -29,7 +29,7 @@ spring:
             enable: true
   datasource:
     password: anG1mX8sPd
-    url: jdbc:sql12.freesqldatabase.com
+    url: jdbc:mysql://sql12.freesqldatabase.com
     username: sql12777610
   jpa:
     hibernate:
