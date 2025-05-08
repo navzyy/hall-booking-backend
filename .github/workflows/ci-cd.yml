@@ -14,13 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build & Push Docker Image
-        working-directory: demo
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: bupanie/hall-allocation-system
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile           
-          context: .                       
+          dockerfile: demo/Dockerfile 
+          context: demo
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
