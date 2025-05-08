@@ -30,9 +30,18 @@
             cursor: pointer;
             margin-left: 10px;
         }
+        .top-right-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            max-width: 280px;
+            height: auto;
+            z-index: 1000;
+          }
     </style>
 </head>
 <body>
+    <img th:src="@{/images/logo.png}" alt="University Logo" class="top-right-logo">
     <h2 th:text="'Booking Hall: ' + ${hall.name}">Booking Hall</h2>
     <div th:if="${error}" class="popup-error" id="errorPopup">
         <span th:text="${error}"></span>

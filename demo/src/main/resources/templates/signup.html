@@ -11,8 +11,14 @@
 </head>
 <body>
   <section>
+    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
+      <img th:src="@{/images/usjp-logo.png}" alt="University Logo" style="display: block; margin: 0 auto 15px auto; max-width: 150px; height: auto;">
+
+      <h1>Create Account</h1>
+      
+    </div>
     <form action="/req/signup" method="post">
-      <h1>Sign Up</h1>
+     
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
             <input type="text" id= "username" name="username" required>
@@ -36,9 +42,9 @@
           <label for="">Confirm Password</label>
       </div>  
         <button id= "submit" type="submit">Sign Up</button>
-      <div class="register">
-        <p>Already have an account? <a href="/req/login">Log In</a></p>
-      </div>
+        <div class="form-links">
+          <p>Already have an account? <a href="/req/login" class="link-register">Log In</a></p>
+        </div>
     </form>
   </section>
 </body>

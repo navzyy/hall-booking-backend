@@ -13,7 +13,8 @@
 <body>
     <section>
         <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
-            <!--img src="demo\src\main\resources\static\images\usjp-logo.png" alt="Logo" style="width: 120px; height: auto;"-->
+            <img th:src="@{/images/usjp-logo.png}" alt="University Logo" style="max-width: 150px; height: auto; margin-bottom: 15px;">
+
             <h1>University of Sri Jayewardenepura</h1>
             <h1> Hall Booking System</h1>
           </div>
@@ -42,13 +43,16 @@
             <div class="dialog-row">
                 <label th:if="${param.error}" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-center redText"></label>                   
             </div>
-            <div class="register">
-                <p><a href="#">Forget Password ?</a></p>
-            </div>
-            <button>Log in</button>
-            <div class="register">
-                <p>Don't have a account ?<a href="/req/signup"> Register!!</a></p>
-            </div>
+            <div class="form-links">
+                <p><a href="#" class="link-forgot">Forgot Password?</a></p>
+              </div>
+              
+              <button type="submit" class="login-btn">Log in</button>
+              
+              <div class="form-links">
+                <p>Don't have an account? <a href="/req/signup" class="link-register">Register</a></p>
+              </div>
+              
         </form>
     </section>
 </body>
