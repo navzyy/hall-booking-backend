@@ -99,6 +99,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>hall-allocation-system</finalName>
 	</build>
 
 </project>
