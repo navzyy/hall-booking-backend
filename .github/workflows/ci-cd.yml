@@ -1,44 +1,25 @@
-
-name: CI
+name: Build and Push Docker Images
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-push-java-api:
+    name: Java API - Build and Push
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-            
-      - name: Build with Maven
-        run: mvn clean install
-
-      - name: Run tests
-        run: mvn test
+        uses: actions/checkout@v3
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-
           image: bupanie/hall-allocation-system
           tags: latest
           registry: docker.io
