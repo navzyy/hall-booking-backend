@@ -28,9 +28,9 @@ spring:
           starttls:
             enable: true
   datasource:
-    url: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12777610
-    username: sql12777610
-    password: anG1mX8sPd
+   url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
