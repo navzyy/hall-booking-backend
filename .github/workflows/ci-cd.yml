@@ -16,10 +16,10 @@ jobs:
       - name: Build & Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: bupanie/hall-allocation-system            # change to your Docker Hub repo
+          image: bupanie/hall-allocation-system
           tags: latest
           registry: docker.io
           dockerfile: ./demo/Dockerfile
-          context: ./demo                                      # root directory where pom.xml lives
+          context: ./demo
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
