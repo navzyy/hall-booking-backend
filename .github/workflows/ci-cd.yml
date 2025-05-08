@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: api
+        working-directory: demo
 
     steps:
       - name: Checkout code
