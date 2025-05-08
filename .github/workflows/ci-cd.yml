@@ -1,26 +1,36 @@
-name: Build and Push Docker Images
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  build-and-push-java-api:
-    name: Java API - Build and Push
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v6
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
         with:
-          image: bupanie/hall-allocation-system
-          tags: latest
-          registry: docker.io
-          dockerfile: ./demo/Dockerfile
-          context: ./demo
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean package
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: bupanie/hall-allocation-system:latest
