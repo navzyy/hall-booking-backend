@@ -9,9 +9,6 @@ jobs:
   build-and-push-java-api:
     name: Java API - Build and Push
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: demo
 
     steps:
       - name: Checkout code
