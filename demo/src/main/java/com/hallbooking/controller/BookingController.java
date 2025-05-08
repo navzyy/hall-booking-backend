@@ -27,17 +27,17 @@ public String showBookingForm(@PathVariable Long hallId, Model model) {
         .orElseThrow(() -> new IllegalArgumentException("Invalid hall ID"));
 
     Booking booking = new Booking();
-    booking.setHall(hall); // ✅ Important to link hall
+    booking.setHall(hall); 
 
     model.addAttribute("booking", booking);
-    model.addAttribute("hall", hall); // ✅ Required for ${hall.name}
+    model.addAttribute("hall", hall);
     return "booking-form";
 }
 
     @PostMapping("/book")
 public String submitBooking(@ModelAttribute Booking booking, Model model) {
-    // ✅ Fetch full Hall entity from DB using the posted hall ID
-    Long hallId = booking.getHall().getId();
+    
+    Long hallId = booking.getHall().getId(); // Fetch full Hall entity from DB using the posted hall ID
     Hall hall = hallRepository.findById(hallId)
         .orElseThrow(() -> new IllegalArgumentException("Invalid hall ID: " + hallId));
     
@@ -74,7 +74,7 @@ public String approveBooking(@PathVariable Long id) {
         booking.setStatus("Approved");
         bookingRepository.save(booking);
     }
-    return "approved"; // Return approved confirmation page
+    return "approved"; //return relevant html pages
 }
 
 @PostMapping("/admin/reject/{id}")
@@ -84,7 +84,7 @@ public String rejectBooking(@PathVariable Long id) {
         booking.setStatus("Rejected");
         bookingRepository.save(booking);
     }
-    return "rejected"; // Return rejected confirmation page
+    return "rejected"; 
 }
 
 }

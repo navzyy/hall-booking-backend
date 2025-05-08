@@ -88,11 +88,22 @@
         .btn:hover {
             opacity: 0.9;
         }
+        .top-right-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            max-width: 280px;
+            height: auto;
+            z-index: 1000;
+          }
+          
         
     </style>
 </head>
 <body>
     <h1><center>Available Halls</center></h1>
+    <img th:src="@{/images/logo.png}" alt="University Logo" class="top-right-logo">
+
     <a href="/my-bookings" class="btn-blue" style="float: right; margin-bottom: 20px;">My Bookings</a>
     <a th:href="@{/req/login}" class="logout-btn" style="float: right; margin-bottom: 60px; margin-right: 10px;">Logout</a>
 

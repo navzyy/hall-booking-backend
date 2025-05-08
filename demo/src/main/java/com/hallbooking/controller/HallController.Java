@@ -8,6 +8,6 @@ public class HallController {
     public String showHalls(Model model) {
         List<Hall> halls = hallRepository.findAll();
         model.addAttribute("halls", halls);
-        return "index"; // 👈 this must match the HTML file name exactly
+        return "index"; 
     }
 }
