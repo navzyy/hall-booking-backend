@@ -16,7 +16,7 @@ public class Hall {
 
     private String description;
 
-    // --- Constructors ---
+  
     public Hall() {
     }
 
@@ -26,7 +26,7 @@ public class Hall {
         this.description = description;
     }
 
-    // --- Getters and Setters ---
+   
     public Long getId() {
         return id;
     }

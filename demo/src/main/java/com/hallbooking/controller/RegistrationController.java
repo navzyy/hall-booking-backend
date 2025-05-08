@@ -7,8 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.hallbooking.model.MyAppUser;
 import com.hallbooking.model.MyAppUserRepository;
 import com.hallbooking.service.EmailService;
@@ -39,7 +37,7 @@ public class RegistrationController {
                 String verificationToken = JwtTokenUtil.generateToken(existingAppUser.getEmail());
                 existingAppUser.setVerficationToken(verificationToken);
                 myAppUserRepository.save(existingAppUser);
-                //Send Email Code
+              
                 emailService.sendVerificationEmail(existingAppUser.getEmail(), verificationToken);
                 return new ResponseEntity<>("Verification Email resent. Check your inbox",HttpStatus.OK);
             }
@@ -48,7 +46,7 @@ public class RegistrationController {
         String vericationToken =JwtTokenUtil.generateToken(user.getEmail());
         user.setVerficationToken(vericationToken);
         myAppUserRepository.save(user);
-        //Send Email Code
+       
         emailService.sendVerificationEmail(user.getEmail(), vericationToken);
         
         return new ResponseEntity<>("Registration successfull! Please Verify your Email", HttpStatus.OK);

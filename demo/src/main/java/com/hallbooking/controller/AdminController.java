@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-
 import java.util.List;
 
 
@@ -19,17 +18,12 @@ import java.util.List;
         @Autowired
         private BookingRepository bookingRepository;
     
-       /*  @GetMapping("/bookings")
-        public String viewAllBookings(Model model) {
-            List<Booking> bookings = bookingRepository.findAll();
-            model.addAttribute("bookings", bookings);
-            return "admin-booking";
-        }*/
+      
         @GetMapping("/bookings")
         public String viewAllSubmittedBookings(Model model) {
-           List<Booking> bookings = bookingRepository.findByStatus("Submitted"); // Only pending bookings
+           List<Booking> bookings = bookingRepository.findByStatus("Submitted"); // Only pending bookings for admin view table
            model.addAttribute("bookings", bookings);
-           return "admin-booking"; // Your admin table HTML
+           return "admin-booking"; 
         }
     
         @PostMapping("/bookings/{id}/approve")
